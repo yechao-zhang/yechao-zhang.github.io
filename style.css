@@ -276,8 +276,8 @@ ul {
 }
 
 .pub-thumbnail {
-    flex: 0 0 300px;
-    /* Adjusted size */
+    flex: 0 0 400px;
+    /* Wider image size for better visibility */
     position: relative;
 }
 
