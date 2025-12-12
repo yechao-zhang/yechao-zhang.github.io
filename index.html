@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yechao Zhang - Academic Profile</title>
+    <meta name="description"
+        content="Personal academic website of Yechao Zhang, Research Fellow at NTU specializing in AI Security and Safety.">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@700&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+    <div class="page-container">
+        <aside class="sidebar">
+            <div class="sidebar-content">
+                <div class="profile-image-container">
+                    <img src="assets/profile.jpg" alt="Yechao Zhang" class="profile-image">
+                </div>
+                <h1>Yechao Zhang</h1>
+                <p class="affiliation">Research Fellow at Nanyang Technological University</p>
+
+                <div class="bio-text">
+                    <p>Exploring the Security Boundaries and Safety Control of AI Systems.</p>
+                </div>
+
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <i class="fas fa-map-marker-alt"></i> <span>Singapore</span>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-envelope"></i> <a href="mailto:yech.zhang@gmail.com">Email</a>
+                    </div>
+                </div>
+
+                <div class="social-links">
+                    <a href="https://github.com/yechao-zhang" target="_blank" aria-label="GitHub"><i
+                            class="fab fa-github"></i> GitHub</a>
+                    <a href="https://scholar.google.com/citations?user=6DN1wxkAAAAJ&hl=en" target="_blank"
+                        aria-label="Google Scholar"><i class="fas fa-graduation-cap"></i> Scholar</a>
+                    <a href="https://www.linkedin.com/in/yechao-zhang-1a7928365/" target="_blank"
+                        aria-label="LinkedIn"><i class="fab fa-linkedin"></i> LinkedIn</a>
+                </div>
+            </div>
+        </aside>
+
+        <main class="main-content">
+            <nav class="top-nav">
+                <div class="menu-toggle" id="mobile-menu">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </div>
+                <ul class="nav-menu">
+                    <li><a href="#about">About Me</a></li>
+                    <li><a href="#news">News</a></li>
+                    <li><a href="#publications">Publications</a></li>
+                    <li><a href="#experience">Experience</a></li>
+                    <li><a href="#projects">Projects</a></li>
+                    <li><a href="#service">Service</a></li>
+                </ul>
+            </nav>
+
+            <section id="about" class="section">
+                <div class="container">
+                    <h2 class="section-title">About Me</h2>
+                    <div class="about-content">
+                        <p>I am currently a Research Fellow at Nanyang Technological University (NTU), working with <a
+                                href="https://personal.ntu.edu.sg/tianwei.zhang" target="_blank">Prof. Tianwei
+                                Zhang</a>. I
+                            received my Ph.D. from Huazhong University of Science and Technology (HUST).</p>
+
+                        <h3>Research Interests</h3>
+                        <p>I explore the security boundaries and improve the safety control of AI systems. Currently, I
+                            focus on hardening the full stack of agent system development and deployment, from the
+                            model's
+                            internal intelligence to its interaction with the external environment.</p>
+
+                        <div class="interests-grid">
+                            <div class="interest-card">
+                                <i class="fas fa-brain"></i>
+                                <h4>Safe Intelligence</h4>
+                                <p>Enhancing models' <em>internal</em> ability to align with safety constraints and
+                                    enable
+                                    self-correction (e.g., Agentic RL).</p>
+                            </div>
+                            <div class="interest-card">
+                                <i class="fas fa-shield-alt"></i>
+                                <h4>Secure Architecture</h4>
+                                <p>Developing systematic frameworks for <em>external</em> control and security models
+                                    for
+                                    agent tool access and data interaction.</p>
+                            </div>
+                            <div class="interest-card">
+                                <i class="fas fa-bug"></i>
+                                <h4>Red Teaming</h4>
+                                <p>Validating system resilience through adversarial testing, prompt injection attacks,
+                                    and
+                                    penetration testing.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="news" class="section bg-light">
+                <div class="container">
+                    <h2 class="section-title">News</h2>
+                    <div class="news-list">
+                        <div class="news-item">
+                            <span class="news-date">Nov 2025</span>
+                            <span class="news-content">Two papers accepted to <strong>AAAI 2026</strong>: one in the main track and one in the AI for Social Impact (AISI) track.</span>
+                        </div>
+                        <div class="news-item">
+                            <span class="news-date">Sep 2025</span>
+                            <span class="news-content">Started as <strong>Research Fellow</strong> at Nanyang Technological University (NTU), Singapore.</span>
+                        </div>
+                        <div class="news-item">
+                            <span class="news-date">Jun 2025</span>
+                            <span class="news-content">Graduated from HUST with <strong>Outstanding Doctoral
+                                    Graduate</strong> award.</span>
+                        </div>
+                        <!-- Add more news items here -->
+                    </div>
+                </div>
+            </section>
+
+            <section id="publications" class="section">
+                <div class="container">
+                    <h2 class="section-title">Selected Publications</h2>
+                    <div class="publication-list">
+                        <!-- Oakland 2025 --><div class="publication-item">
+                            <div class="pub-thumbnail">
+                                <span class="pub-badge">S&P 2025</span>
+                                <img src="assets/secure_transfer.png" alt="Secure Transfer Learning Framework">
+                            </div>
+                            <div class="pub-content">
+                                <h3 class="pub-title"><a href="https://arxiv.org/pdf/2504.11990" target="_blank">Secure
+                                        Transfer Learning: Training Clean Model Against Backdoor in
+                                        Pre-trained Encoder and Downstream Dataset</a></h3>
+                                <p class="pub-authors"><strong>Yechao Zhang</strong>, Yuxuan Zhou, Tianyu Li, Minghui
+                                    Li,
+                                    Shengshan Hu, Wei Luo, Leo Yu Zhang</p>
+                                <p class="pub-venue">IEEE Symposium on Security and Privacy (Oakland'25)</p>
+                                <div class="pub-desc">
+                                    <ul>
+                                        <li><strong>Assessing Existing Defense Methodology</strong>: We exhaustively
+                                            analyze
+                                            existing defense strategies and reveal that their reactive workflows and
+                                            reliance on specific assumptions fail to scale to unknown threats, novel
+                                            attack
+                                            types, or different training paradigms.</li>
+                                        <li><strong>A Proactive Mindset</strong>: We advocate for a proactive approach
+                                            that
+                                            identifies and amplifies high-credibility clean elements to address unknown
+                                            backdoor threats, rather than reactively eliminating poison.</li>
+                                        <li><strong>Trusted Core Bootstrapping</strong>: We propose the T-Core
+                                            Bootstrapping
+                                            framework to proactively identify clean data and neurons, effectively
+                                            mitigating
+                                            backdoor risks in resource-constrained transfer learning scenarios.</li>
+                                    </ul>
+                                </div>
+                                <div class="pub-links">
+                                    <a href="https://arxiv.org/pdf/2504.11990" target="_blank" class="btn-sm"><i
+                                            class="far fa-file-pdf"></i> PDF</a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- EMNLP 2025 -->
+                        <div class="publication-item">
+                            <div class="pub-thumbnail">
+                                <span class="pub-badge">EMNLP 2025 Main</span>
+                                <img src="assets/emnlp_main.png" alt="Transferable Direct Prompt Injection Framework">
+                            </div>
+                            <div class="pub-content">
+                                <h3 class="pub-title"><a href="https://arxiv.org/pdf/2509.07617"
+                                        target="_blank">Transferable Direct Prompt Injection via Activation-Guided MCMC
+                                        Sampling</a></h3>
+                                <p class="pub-authors">Minghui Li, Hao Zhang, <strong>Yechao Zhang#</strong>, Wei Wan,
+                                    Shengshan Hu, Pei Xiaobing, Jing Wang</p>
+                                <p class="pub-venue">Empirical Methods in Natural Language Processing (EMNLP'25 Main)
+                                </p>
+                                <div class="pub-desc">
+                                    <ul>
+                                        <li><strong>Activation-Guided Framework</strong>: Proposes an activation-guided
+                                            prompt injection framework that uses an Energy-based Model (EBM) constructed
+                                            from surrogate model activations to evaluate prompt quality.</li>
+                                        <li><strong>Gradient-Free Optimization</strong>: Employs token-level MCMC
+                                            sampling guided by the EBM to adaptively optimize adversarial prompts
+                                            without requiring gradients, enabling black-box attacks.</li>
+                                        <li><strong>Superior Transferability</strong>: Achieves 49.6% Attack Success
+                                            Rate (ASR) across five mainstream LLMs, significantly outperforming
+                                            human-crafted prompts and maintaining effectiveness on unseen tasks.</li>
+                                    </ul>
+                                </div>
+                                <div class="pub-links">
+                                    <a href="https://arxiv.org/pdf/2509.07617" target="_blank" class="btn-sm"><i
+                                            class="far fa-file-pdf"></i> PDF</a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Oakland 2024 -->
+                        <div class="publication-item">
+                            <div class="pub-thumbnail">
+                                <span class="pub-badge">S&P 2024</span>
+                                <img src="assets/little_robustness_mechanism.png" alt="Transfer Attack Framework">
+                            </div>
+                            <div class="pub-content">
+                                <h3 class="pub-title"><a href="https://arxiv.org/pdf/2307.07873.pdf" target="_blank">Why
+                                        Does Little Robustness Help? A Further Step Towards Understanding
+                                        Adversarial Transferability</a></h3>
+                                <p class="pub-authors"><strong>Yechao Zhang</strong>, Shengshan Hu, Leo Yu Zhang, Junyu
+                                    Shi,
+                                    Minghui Li, Xiaogeng Liu, Wei Wan, Hai Jin</p>
+                                <p class="pub-venue">IEEE Symposium on Security and Privacy (Oakland'24)</p>
+                                <div class="pub-desc">
+                                    <ul>
+                                        <li><strong>Theoretical Understanding of Transferability Paradox</strong>: Provides the first theoretical explanation for why mildly adversarially trained models generate more transferable attacks than both naturally trained and strongly robust models, resolving a long-standing empirical puzzle in adversarial machine learning.</li>
+                                        <li><strong>Dual-Factor Trade-off Mechanism</strong>: Identifies and formalizes the fundamental trade-off between model smoothness (which enhances transferability) and gradient similarity (which degrades during adversarial training due to data distribution shift), explaining diverse experimental phenomena in the field.</li>
+                                        <li><strong>Practical Surrogate Optimization</strong>: Proposes combining input gradient regularization with sharpness-aware minimization (SAM) to simultaneously optimize both factors, creating superior surrogate models that significantly boost black-box attack success rates across diverse architectures.</li>
+                                    </ul>
+                                </div>
+                                <div class="pub-links">
+                                    <a href="https://arxiv.org/pdf/2307.07873.pdf" target="_blank" class="btn-sm"><i
+                                            class="far fa-file-pdf"></i> PDF</a>
+                                    <a href="https://github.com/CGCL-codes/TransferAttackSurrogates" target="_blank"
+                                        class="btn-sm"><i class="fab fa-github"></i> Code</a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="publication-item">
+                            <div class="pub-thumbnail">
+                                <span class="pub-badge">S&P 2024</span>
+                                <img src="assets/ted.png" alt="Robust Backdoor Detection Illustration">
+                            </div>
+                            <div class="pub-content">
+                                <h3 class="pub-title"><a href="https://arxiv.org/pdf/2312.02673.pdf"
+                                        target="_blank">Robust Backdoor Detection for Deep Learning via Topological
+                                        Evolution
+                                        Dynamics</a></h3>
+                                <p class="pub-authors">Xiaoxing Mo*, <strong>Yechao Zhang*</strong>, Leo Yu Zhang, Wei
+                                    Luo,
+                                    Nan Sun, Shengshan Hu, Shang Gao, Yang Xiang</p>
+                                <p class="pub-venue">IEEE Symposium on Security and Privacy (Oakland'24)</p>
+                                <div class="pub-desc">
+                                    <ul>
+                                        <li><strong>Novel Attack Discovery & General Defense</strong>: Introduces Source-Specific Dynamic-Trigger (SSDT) backdoors that evade all existing metric-space defenses, then develops a model-agnostic detection framework effective against both traditional and SSDT attacks across vision and NLP domains.</li>
+                                        <li><strong>Topological Evolution Dynamics Paradigm</strong>: Shifts from geometric separation in metric space to analyzing topological properties of sample trajectories through neural network layers, treating DNNs as dynamical systems where benign and malicious samples follow fundamentally different evolution patterns.</li>
+                                        <li><strong>State-of-the-Art Detection Performance</strong>: Achieves superior detection rates across multiple architectures (ResNet, VGG, BERT) and datasets, significantly outperforming existing defenses while maintaining model-agnostic applicability and computational efficiency.</li>
+                                    </ul>
+                                </div>
+                                <div class="pub-links">
+                                    <a href="https://arxiv.org/pdf/2312.02673.pdf" target="_blank" class="btn-sm"><i
+                                            class="far fa-file-pdf"></i> PDF</a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- AAAI 2025 -->
+                        <div class="publication-item">
+                            <div class="pub-thumbnail">
+                                <span class="pub-badge">AAAI 2025</span>
+                                <img src="assets/uap_framework.png" alt="Dynamic Maximin Optimization Framework">
+                            </div>
+                            <div class="pub-content">
+                                <h3 class="pub-title"><a href="https://ojs.aaai.org/index.php/AAAI/article/view/33117"
+                                        target="_blank">Improving Generalization of Universal Adversarial Perturbation
+                                        via
+                                        Dynamic Maximin Optimization</a></h3>
+                                <p class="pub-authors"><strong>Yechao Zhang</strong>, Yingzhe Xu, Junyu Shi, Leo Yu
+                                    Zhang,
+                                    Shengshan Hu, Minghui Li, Yanjun Zhang</p>
+                                <p class="pub-venue">AAAI 2025</p>
+                                <div class="pub-desc">
+                                    <ul>
+                                        <li><strong>Dynamic Model-Data Optimization</strong>: Proposes DM-UAP framework that generates UAPs through dynamic model-data pairs rather than static snapshots, exploring the combined space of model parameters and training data via curriculum learning.</li>
+                                        <li><strong>Max-Min-Min Framework</strong>: Employs a novel max-min-min optimization framework that iteratively optimizes across diverse model configurations and data distributions to enhance both cross-sample universality and cross-model transferability.</li>
+                                        <li><strong>Significant Performance Gains</strong>: Achieves an average 12.108% increase in fooling ratio on ImageNet with only 500 training samples, significantly outperforming prior state-of-the-art UAP generation methods.
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="pub-links">
+                                    <a href="https://ojs.aaai.org/index.php/AAAI/article/view/33117" target="_blank"
+                                        class="btn-sm"><i class="far fa-file-pdf"></i> PDF</a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- More publications can be added here -->
+                        <div class="show-more-container">
+                            <p><em>...and more. See my <a
+                                        href="https://scholar.google.com/citations?user=6DN1wxkAAAAJ&hl=en"
+                                        target="_blank">Google Scholar</a> for the full list.</em></p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="experience" class="section">
+                <div class="container">
+                    <h2 class="section-title">Experience</h2>
+                    <div class="timeline">
+                        <div class="timeline-item">
+                            <div class="timeline-date">2020 - 2025</div>
+                            <div class="timeline-content">
+                                <h3>Huazhong University of Science and Technology</h3>
+                                <p class="role">Ph.D. Student, School of Cyber Science and Engineering</p>
+                                <p class="location">Wuhan, China</p>
+                                <p class="gpa">GPA: 89.99/100</p>
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-date">Sep 2024 - Dec 2024</div>
+                            <div class="timeline-content">
+                                <h3>Ant Group, Security Department</h3>
+                                <p class="role">Research Intern</p>
+                                <p>Investigated adversarial vulnerabilities in safety-aligned Multimodal LLMs and
+                                    developed
+                                    jailbreaking techniques.</p>
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-date">Apr 2024 - Aug 2024</div>
+                            <div class="timeline-content">
+                                <h3>Tencent AI Lab</h3>
+                                <p class="role">Algorithm Intern</p>
+                                <p>Built a knowledge-enhanced agent and researched RAG poisoning.</p>
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-date">2016 - 2020</div>
+                            <div class="timeline-content">
+                                <h3>Nanjing Agricultural University</h3>
+                                <p class="role">B.E., College of Artificial Intelligence</p>
+                                <p class="location">Nanjing, China</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="projects" class="section bg-light">
+                <div class="container">
+                    <h2 class="section-title">Ongoing Projects</h2>
+                    <div class="project-grid">
+                        <div class="project-card">
+                            <h3>System Security of Enterprise Personal AI Products</h3>
+                            <p>Developing proof-of-concept attacks exposing vulnerabilities in enterprise AI agents
+                                (ChatGPT, Claude Desktop, etc.) that integrate with personal resources. Identifying
+                                security
+                                boundary collapses in AI agent architectures.</p>
+                            <span class="badge">Leading</span>
+                        </div>
+                        <div class="project-card">
+                            <h3>Mitigating Reward Hacking in Agentic RL</h3>
+                            <p>Addressing natural emergent misalignment from reward hacking in reinforcement learning.
+                                Developing remedies for AI deception in agentic video understanding tasks.</p>
+                            <span class="badge">Supervising</span>
+                        </div>
+                        <div class="project-card">
+                            <h3>Real-World AI Agent Penetration Testing</h3>
+                            <p>Conducting measurement study of top AI agent projects. Using reverse-engineered trace
+                                patterns to enhance attacks and perform penetration testing against tools like Claude
+                                Code
+                                and Codex.</p>
+                            <span class="badge">Supervising</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="service" class="section">
+                <div class="container">
+                    <h2 class="section-title">Service & Honors</h2>
+                    <div class="service-grid">
+                        <div class="service-column">
+                            <h3>Academic Service</h3>
+                            <ul class="styled-list">
+                                <li><strong>Reviewer (2025):</strong> NeurIPS, ICLR, CVPR, AAAI, ICML, ICCV, ACM MM</li>
+                                <li><strong>Reviewer (2024):</strong> NeurIPS, CVPR, ECCV, ICPR, ACM MM</li>
+                                <li><strong>Journal Reviewer:</strong> IEEE TDSC, IEEE TNNLS, IEEE TIFS</li>
+                            </ul>
+                        </div>
+                        <div class="service-column">
+                            <h3>Honors</h3>
+                            <ul class="styled-list">
+                                <li>Outstanding Doctoral Graduate, HUST (2025)</li>
+                                <li>China National Scholarship (2021)</li>
+                                <li>Merit Master Student, HUST (2021)</li>
+                                <li>Merit Master Student, HUST (2021)</li>
+                                <li>China National Endeavor Scholarship, NAU (2017)</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <footer>
+                <div class="container">
+                    <p>&copy; 2025 Yechao Zhang. All rights reserved.</p>
+                    <div class="social-links footer-social">
+                        <a href="https://github.com/yechao-zhang" target="_blank"><i class="fab fa-github"></i></a>
+                        <a href="https://scholar.google.com/citations?user=6DN1wxkAAAAJ&hl=en" target="_blank"><i
+                                class="fas fa-graduation-cap"></i></a>
+                        <a href="https://www.linkedin.com/in/yechao-zhang-1a7928365/" target="_blank"><i
+                                class="fab fa-linkedin"></i></a>
+                    </div>
+                </div>
+            </footer>
+        </main>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
