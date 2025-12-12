@@ -115,11 +115,13 @@
                     <div class="news-list">
                         <div class="news-item">
                             <span class="news-date">Nov 2025</span>
-                            <span class="news-content">Two papers accepted to <strong>AAAI 2026</strong>: one in the main track and one in the AI for Social Impact (AISI) track.</span>
+                            <span class="news-content">Two papers accepted to <strong>AAAI 2026</strong>: one in the
+                                main track and one in the AI for Social Impact (AISI) track.</span>
                         </div>
                         <div class="news-item">
                             <span class="news-date">Sep 2025</span>
-                            <span class="news-content">Started as <strong>Research Fellow</strong> at Nanyang Technological University (NTU), Singapore.</span>
+                            <span class="news-content">Started as <strong>Research Fellow</strong> at Nanyang
+                                Technological University (NTU), Singapore.</span>
                         </div>
                         <div class="news-item">
                             <span class="news-date">Jun 2025</span>
@@ -135,10 +137,11 @@
                 <div class="container">
                     <h2 class="section-title">Selected Publications</h2>
                     <div class="publication-list">
-                        <!-- Oakland 2025 --><div class="publication-item">
+                        <!-- Oakland 2025 -->
+                        <div class="publication-item">
                             <div class="pub-thumbnail">
                                 <span class="pub-badge">S&P 2025</span>
-                                <img src="assets/secure_transfer.png" alt="Secure Transfer Learning Framework">
+                                <img src="assets/secure_transfer_final.png" alt="Secure Transfer Learning Framework">
                             </div>
                             <div class="pub-content">
                                 <h3 class="pub-title"><a href="https://arxiv.org/pdf/2504.11990" target="_blank">Secure
@@ -150,21 +153,18 @@
                                 <p class="pub-venue">IEEE Symposium on Security and Privacy (Oakland'25)</p>
                                 <div class="pub-desc">
                                     <ul>
-                                        <li><strong>Assessing Existing Defense Methodology</strong>: We exhaustively
-                                            analyze
-                                            existing defense strategies and reveal that their reactive workflows and
-                                            reliance on specific assumptions fail to scale to unknown threats, novel
-                                            attack
-                                            types, or different training paradigms.</li>
-                                        <li><strong>A Proactive Mindset</strong>: We advocate for a proactive approach
-                                            that
-                                            identifies and amplifies high-credibility clean elements to address unknown
-                                            backdoor threats, rather than reactively eliminating poison.</li>
+                                        <li><strong>Dual-Level Backdoor Threat</strong>: We address a comprehensive
+                                            threat model where both the pre-trained encoder and the downstream
+                                            fine-tuning dataset may be poisoned, a realistic scenario often overlooked
+                                            in prior research.</li>
+                                        <li><strong>Assessing Existing Defenses</strong>: We reveal that existing
+                                            defense strategies fail to scale to this complex, resource-constrained
+                                            scenario due to their reactive nature and reliance on specific assumptions.
+                                        </li>
                                         <li><strong>Trusted Core Bootstrapping</strong>: We propose the T-Core
-                                            Bootstrapping
-                                            framework to proactively identify clean data and neurons, effectively
-                                            mitigating
-                                            backdoor risks in resource-constrained transfer learning scenarios.</li>
+                                            Bootstrapping framework to proactively identify clean neurons and data
+                                            samples, effectively mitigating risks from both poisoned encoders and
+                                            malicious fine-tuning data.</li>
                                     </ul>
                                 </div>
                                 <div class="pub-links">
@@ -224,9 +224,21 @@
                                 <p class="pub-venue">IEEE Symposium on Security and Privacy (Oakland'24)</p>
                                 <div class="pub-desc">
                                     <ul>
-                                        <li><strong>Theoretical Understanding of Transferability Paradox</strong>: Provides the first theoretical explanation for why mildly adversarially trained models generate more transferable attacks than both naturally trained and strongly robust models, resolving a long-standing empirical puzzle in adversarial machine learning.</li>
-                                        <li><strong>Dual-Factor Trade-off Mechanism</strong>: Identifies and formalizes the fundamental trade-off between model smoothness (which enhances transferability) and gradient similarity (which degrades during adversarial training due to data distribution shift), explaining diverse experimental phenomena in the field.</li>
-                                        <li><strong>Practical Surrogate Optimization</strong>: Proposes combining input gradient regularization with sharpness-aware minimization (SAM) to simultaneously optimize both factors, creating superior surrogate models that significantly boost black-box attack success rates across diverse architectures.</li>
+                                        <li><strong>Theoretical Understanding of Transferability Paradox</strong>:
+                                            Provides the first theoretical explanation for why mildly adversarially
+                                            trained models generate more transferable attacks than both naturally
+                                            trained and strongly robust models, resolving a long-standing empirical
+                                            puzzle in adversarial machine learning.</li>
+                                        <li><strong>Dual-Factor Trade-off Mechanism</strong>: Identifies and formalizes
+                                            the fundamental trade-off between model smoothness (which enhances
+                                            transferability) and gradient similarity (which degrades during adversarial
+                                            training due to data distribution shift), explaining diverse experimental
+                                            phenomena in the field.</li>
+                                        <li><strong>Practical Surrogate Optimization</strong>: Proposes combining input
+                                            gradient regularization with sharpness-aware minimization (SAM) to
+                                            simultaneously optimize both factors, creating superior surrogate models
+                                            that significantly boost black-box attack success rates across diverse
+                                            architectures.</li>
                                     </ul>
                                 </div>
                                 <div class="pub-links">
@@ -241,7 +253,8 @@
                         <div class="publication-item">
                             <div class="pub-thumbnail">
                                 <span class="pub-badge">S&P 2024</span>
-                                <img src="assets/ted.png" alt="Robust Backdoor Detection Illustration">
+                                <img src="assets/robust_backdoor_final.png"
+                                    alt="Robust Backdoor Detection Illustration">
                             </div>
                             <div class="pub-content">
                                 <h3 class="pub-title"><a href="https://arxiv.org/pdf/2312.02673.pdf"
@@ -254,9 +267,20 @@
                                 <p class="pub-venue">IEEE Symposium on Security and Privacy (Oakland'24)</p>
                                 <div class="pub-desc">
                                     <ul>
-                                        <li><strong>Novel Attack Discovery & General Defense</strong>: Introduces Source-Specific Dynamic-Trigger (SSDT) backdoors that evade all existing metric-space defenses, then develops a model-agnostic detection framework effective against both traditional and SSDT attacks across vision and NLP domains.</li>
-                                        <li><strong>Topological Evolution Dynamics Paradigm</strong>: Shifts from geometric separation in metric space to analyzing topological properties of sample trajectories through neural network layers, treating DNNs as dynamical systems where benign and malicious samples follow fundamentally different evolution patterns.</li>
-                                        <li><strong>State-of-the-Art Detection Performance</strong>: Achieves superior detection rates across multiple architectures (ResNet, VGG, BERT) and datasets, significantly outperforming existing defenses while maintaining model-agnostic applicability and computational efficiency.</li>
+                                        <li><strong>Novel Attack Discovery & General Defense</strong>: Introduces
+                                            Source-Specific Dynamic-Trigger (SSDT) backdoors that evade all existing
+                                            metric-space defenses, then develops a model-agnostic detection framework
+                                            effective against both traditional and SSDT attacks across vision and NLP
+                                            domains.</li>
+                                        <li><strong>Topological Evolution Dynamics Paradigm</strong>: Shifts from
+                                            geometric separation in metric space to analyzing topological properties of
+                                            sample trajectories through neural network layers, treating DNNs as
+                                            dynamical systems where benign and malicious samples follow fundamentally
+                                            different evolution patterns.</li>
+                                        <li><strong>State-of-the-Art Detection Performance</strong>: Achieves superior
+                                            detection rates across multiple architectures (ResNet, VGG, BERT) and
+                                            datasets, significantly outperforming existing defenses while maintaining
+                                            model-agnostic applicability and computational efficiency.</li>
                                     </ul>
                                 </div>
                                 <div class="pub-links">
@@ -283,9 +307,17 @@
                                 <p class="pub-venue">AAAI 2025</p>
                                 <div class="pub-desc">
                                     <ul>
-                                        <li><strong>Dynamic Model-Data Optimization</strong>: Proposes DM-UAP framework that generates UAPs through dynamic model-data pairs rather than static snapshots, exploring the combined space of model parameters and training data via curriculum learning.</li>
-                                        <li><strong>Max-Min-Min Framework</strong>: Employs a novel max-min-min optimization framework that iteratively optimizes across diverse model configurations and data distributions to enhance both cross-sample universality and cross-model transferability.</li>
-                                        <li><strong>Significant Performance Gains</strong>: Achieves an average 12.108% increase in fooling ratio on ImageNet with only 500 training samples, significantly outperforming prior state-of-the-art UAP generation methods.
+                                        <li><strong>Dynamic Model-Data Optimization</strong>: Proposes DM-UAP framework
+                                            that generates UAPs through dynamic model-data pairs rather than static
+                                            snapshots, exploring the combined space of model parameters and training
+                                            data via curriculum learning.</li>
+                                        <li><strong>Max-Min-Min Framework</strong>: Employs a novel max-min-min
+                                            optimization framework that iteratively optimizes across diverse model
+                                            configurations and data distributions to enhance both cross-sample
+                                            universality and cross-model transferability.</li>
+                                        <li><strong>Significant Performance Gains</strong>: Achieves an average 12.108%
+                                            increase in fooling ratio on ImageNet with only 500 training samples,
+                                            significantly outperforming prior state-of-the-art UAP generation methods.
                                         </li>
                                     </ul>
                                 </div>
