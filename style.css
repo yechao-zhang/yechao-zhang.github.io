@@ -423,7 +423,41 @@ ul {
     margin-bottom: 5px;
 }
 
-/* Projects */
+/* Research Philosophy */
+.philosophy-content {
+    font-size: 1rem;
+    line-height: 1.8;
+    color: var(--text-color);
+}
+
+.philosophy-content h3 {
+    margin-top: 30px;
+    margin-bottom: 15px;
+    font-size: 1.3rem;
+    color: var(--primary-color);
+}
+
+.philosophy-content p {
+    margin-bottom: 20px;
+}
+
+.philosophy-content ul {
+    margin-bottom: 20px;
+    padding-left: 25px;
+    list-style-type: disc;
+}
+
+.philosophy-content li {
+    margin-bottom: 12px;
+    line-height: 1.7;
+}
+
+.philosophy-content strong {
+    color: var(--primary-color);
+    font-weight: 600;
+}
+
+/* Projects - Legacy styles (if needed) */
 .project-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
