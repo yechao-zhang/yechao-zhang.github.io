@@ -156,13 +156,13 @@
             <section id="publications" class="section">
                 <div class="container">
                     <h2 class="section-title">Selected Publications</h2>
+                    <p class="section-note"><sup>&dagger;</sup> Corresponding author</p>
                     <div class="publication-list">
                         <!-- VideoSEAL -->
                         <div class="publication-item">
                             <div class="pub-content">
                                 <h3 class="pub-title"><a href="https://arxiv.org/abs/2605.12571" target="_blank">VideoSEAL: Mitigating Evidence Misalignment in Agentic Long Video Understanding by Decoupling Answer Authority</a></h3>
                                 <p class="pub-authors">Chenhao Qiu, <strong>Yechao Zhang</strong><sup>&dagger;</sup>, Xin Luo, Shien Song, Xusheng Liu</p>
-                                <p class="pub-note"><sup>&dagger;</sup> Corresponding author</p>
                                 <p class="pub-venue">International Conference on Machine Learning (ICML 2026)</p>
                                 <div class="pub-desc">
                                     <p>VideoSEAL asks why long-video agents get more accurate without getting more grounded: a <strong>reward-hacking failure</strong> in multi-turn agentic RL. Under outcome-only GRPO, training-set accuracy improves while evidence-seeking behavior does not, because credit can flow to answer shortcuts rather than exploration actions. We trace this to two pressures: (1) <strong>reward pressure</strong> during training, where outcome-only rewards encourage the agent to speculate from insufficient evidence rather than reinforce evidence-seeking actions; and (2) <strong>prompt pressure</strong> at inference, where longer search traces saturate context and push planners toward speculative commitment instead of verification. The fix decouples an exploring planner from a frozen inspector with answer authority and abstention, enabling search-budget scaling and reducing semantic hallucination from 62.1% to 11.3% on LVBench.</p>
@@ -217,7 +217,6 @@
                                         Sampling</a></h3>
                                 <p class="pub-authors">Minghui Li, Hao Zhang, <strong>Yechao Zhang</strong><sup>&dagger;</sup>, Wei Wan,
                                     Shengshan Hu, Pei Xiaobing, Jing Wang</p>
-                                <p class="pub-note"><sup>&dagger;</sup> Corresponding author</p>
                                 <p class="pub-venue">Empirical Methods in Natural Language Processing (EMNLP'25 Main)
                                 </p>
                                 <div class="pub-desc">

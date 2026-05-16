@@ -300,10 +300,11 @@ ul {
     margin-bottom: 5px;
 }
 
-.pub-note {
-    font-size: 0.85rem;
+.section-note {
+    font-size: 0.9rem;
     color: #666;
-    margin-bottom: 5px;
+    margin-top: -18px;
+    margin-bottom: 24px;
 }
 
 .pub-venue {
