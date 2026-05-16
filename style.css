@@ -300,6 +300,12 @@ ul {
     margin-bottom: 5px;
 }
 
+.pub-note {
+    font-size: 0.85rem;
+    color: #666;
+    margin-bottom: 5px;
+}
+
 .pub-venue {
     font-style: italic;
     color: var(--accent-color);
