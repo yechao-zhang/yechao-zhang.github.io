@@ -62,7 +62,7 @@
                     <li><a href="#news">News</a></li>
                     <li><a href="#publications">Publications</a></li>
                     <li><a href="#experience">Experience</a></li>
-                    <li><a href="#projects">Research Philosophy</a></li>
+                    <li><a href="#projects">Projects</a></li>
                     <li><a href="#service">Service</a></li>
                 </ul>
             </nav>
@@ -77,32 +77,28 @@
                             received my Ph.D. from Huazhong University of Science and Technology (HUST).</p>
 
                         <h3>Research Interests</h3>
-                        <p>I explore the security boundaries and improve the safety control of AI systems. Currently, I
-                            focus on hardening the full stack of agent system development and deployment, from the
-                            model's
-                            internal intelligence to its interaction with the external environment.</p>
+                        <p>I study the security and safety of real-world AI agent systems, spanning models' internal
+                            safety behavior, external controls over tools and memory, and systematic red teaming of
+                            deployed agent systems.</p>
 
                         <div class="interests-grid">
                             <div class="interest-card">
                                 <i class="fas fa-brain"></i>
                                 <h4>Safe Intelligence</h4>
-                                <p>Enhancing models' <em>internal</em> ability to align with safety constraints and
-                                    enable
-                                    self-correction (e.g., Agentic RL).</p>
+                                <p>Building a model's <em>internal</em> alignment, so that acting on human intent
+                                    comes from its own reasoning and training (e.g., agentic RL, OPD).</p>
                             </div>
                             <div class="interest-card">
-                                <i class="fas fa-shield-alt"></i>
-                                <h4>Secure Architecture</h4>
-                                <p>Developing systematic frameworks for <em>external</em> control and security models
-                                    for
-                                    agent tool access and data interaction.</p>
+                                <i class="fas fa-eye"></i>
+                                <h4>Agent Oversight</h4>
+                                <p>Enforcing <em>external</em> control over an agent through its harness, overseeing its
+                                    reasoning and actions (e.g., CoT monitoring, sandboxing).</p>
                             </div>
                             <div class="interest-card">
                                 <i class="fas fa-bug"></i>
                                 <h4>Red Teaming</h4>
-                                <p>Validating system resilience through adversarial testing, prompt injection attacks,
-                                    and
-                                    penetration testing.</p>
+                                <p>Finding where agents fail before attackers do, by adversarially stress-testing
+                                    real-world systems to surface their failure modes before deployment.</p>
                             </div>
                         </div>
                     </div>
@@ -304,6 +300,38 @@
                 </div>
             </section>
 
+            <section id="projects" class="section bg-light">
+                <div class="container">
+                    <h2 class="section-title">Selected Research Projects</h2>
+                    <div class="project-grid">
+                        <div class="project-card">
+                            <span class="badge">arXiv 2026</span>
+                            <h3><a href="https://arxiv.org/abs/2603.23064" target="_blank">OpenClaw Heartbeat & Silent Memory Pollution</a></h3>
+                            <p>I studied how heartbeat-style background execution in persistent personal agents can
+                                silently carry untrusted content into the shared agent context. The work shows that
+                                background runs, memory provenance, and user visibility are core security boundaries for
+                                real-world personal agents.</p>
+                        </div>
+                        <div class="project-card">
+                            <span class="badge">ACM CCS 2026</span>
+                            <h3><a href="https://reasoningbomb.github.io/" target="_blank">ReasoningBomb</a></h3>
+                            <p>ReasoningBomb studies denial-of-service attacks against large reasoning models by
+                                inducing pathologically long reasoning. The project highlights a safety and availability
+                                risk for deployed reasoning-heavy agents: harmful behavior can appear as excessive
+                                computation rather than an obviously wrong answer.</p>
+                        </div>
+                        <div class="project-card">
+                            <span class="badge">ICML 2026</span>
+                            <h3><a href="https://arxiv.org/abs/2605.12571" target="_blank">VideoSEAL</a></h3>
+                            <p>VideoSEAL studies evidence misalignment in agentic long-video understanding, where a
+                                system may provide authoritative answers while relying on weak or mismatched evidence.
+                                The project improves reliability by decoupling answer authority from evidence handling
+                                in multimodal agentic decision making.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
             <section id="experience" class="section">
                 <div class="container">
                     <h2 class="section-title">Experience</h2>
@@ -322,9 +350,8 @@
                             <div class="timeline-content">
                                 <h3>Ant Group, Security Department</h3>
                                 <p class="role">Research Intern</p>
-                                <p>Investigated adversarial vulnerabilities in safety-aligned Multimodal LLMs and
-                                    developed
-                                    jailbreaking techniques.</p>
+                                <p>Researched backdoor attacks and defenses, including training clean models
+                                    against backdoored pre-trained encoders.</p>
                             </div>
                         </div>
                         <div class="timeline-item">
@@ -383,8 +410,7 @@
                             <ul class="styled-list">
                                 <li>Outstanding Doctoral Graduate, HUST (2025)</li>
                                 <li>China National Scholarship (2021)</li>
-                                <li>Merit Master Student, HUST (2021)</li>
-                                <li>Merit Master Student, HUST (2021)</li>
+                                <li>Merit PhD Student, HUST (2021)</li>
                             </ul>
                         </div>
                     </div>
@@ -393,7 +419,7 @@
 
             <footer>
                 <div class="container">
-                    <p>&copy; 2025 Yechao Zhang. All rights reserved.</p>
+                    <p>&copy; 2026 Yechao Zhang. All rights reserved.</p>
                     <div class="social-links footer-social">
                         <a href="https://github.com/yechao-zhang" target="_blank"><i class="fab fa-github"></i></a>
                         <a href="https://scholar.google.com/citations?user=6DN1wxkAAAAJ&hl=en" target="_blank"><i
