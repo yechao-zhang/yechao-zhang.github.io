@@ -10,9 +10,17 @@ const html = readFileSync(indexPath, 'utf8');
 
 const videoSealTitle =
     'VideoSEAL: Mitigating Evidence Misalignment in Agentic Long Video Understanding by Decoupling Answer Authority';
+const memGhostTitle =
+    'When Claws Remember but Do Not Tell: Stealthy Memory Injection in Persistent Personal Agents';
 const publicationItems = [
     ...html.matchAll(/<div class="publication-item">[\s\S]*?<\/div>\s*<\/div>\s*<\/div>/g),
 ].map((match) => match[0]);
+const memGhostPublication = publicationItems.find((item) =>
+    item.includes('When Claws Remember but Do Not Tell')
+);
+const memGhostNews = html.match(
+    /<div class="news-item">[\s\S]*?2607\.05189[\s\S]*?<\/div>/
+)?.[0];
 const videoSealPublication = publicationItems.find((item) => item.includes('VideoSEAL:'));
 const videoSealNews = html.match(
     /<div class="news-item">[\s\S]*?<strong>VideoSEAL<\/strong>[\s\S]*?<\/div>/
@@ -29,9 +37,15 @@ const promptInjectionPublication = publicationItems.find((item) =>
 const publicationsSection = html.match(
     /<section id="publications"[\s\S]*?<\/section>/
 );
+const experienceSection = html.match(
+    /<section id="experience"[\s\S]*?<\/section>/
+);
 
 assert.ok(publicationsSection, 'Selected Publications section should exist.');
+assert.ok(experienceSection, 'Experience section should exist.');
 
+assert.ok(memGhostPublication, 'MemGhost paper should be listed as a selected publication.');
+assert.ok(memGhostNews, 'MemGhost paper should be listed in News.');
 assert.ok(videoSealPublication, 'VideoSEAL should be listed as a selected publication.');
 assert.ok(videoSealNews, 'VideoSEAL should be listed in News.');
 assert.ok(openClawPublication, 'OpenClaw heartbeat paper should be listed as a selected publication.');
@@ -44,11 +58,13 @@ assert.ok(
     'Transferable Direct Prompt Injection should be listed as a selected publication.'
 );
 
+const memGhostHtml = memGhostPublication;
 const videoSealHtml = videoSealPublication;
 const openClawHtml = openClawPublication;
 const dynamicMaximinHtml = dynamicMaximinPublication;
 const promptInjectionHtml = promptInjectionPublication;
 const publicationsHtml = publicationsSection[0];
+const experienceHtml = experienceSection[0];
 
 assert.ok(
     publicationsHtml.includes('<p class="section-note"><sup>&dagger;</sup> Corresponding author</p>'),
@@ -57,6 +73,45 @@ assert.ok(
 assert.ok(
     !publicationsHtml.includes('<p class="pub-note">'),
     'Publication entries should not repeat the corresponding-author note.'
+);
+
+assert.ok(
+    memGhostHtml.includes(memGhostTitle),
+    'MemGhost publication should use the full paper title.'
+);
+assert.ok(
+    memGhostHtml.includes('https://arxiv.org/abs/2607.05189'),
+    'MemGhost publication should link to the arXiv abstract.'
+);
+assert.ok(
+    memGhostHtml.includes('https://arxiv.org/pdf/2607.05189'),
+    'MemGhost publication should link to the PDF.'
+);
+assert.ok(
+    memGhostHtml.includes('<strong>Yechao Zhang</strong>'),
+    'MemGhost publication should highlight Yechao Zhang in the author list.'
+);
+assert.ok(
+    memGhostHtml.includes('arXiv 2026'),
+    'MemGhost publication should show the arXiv 2026 venue.'
+);
+assert.ok(
+    memGhostHtml.includes('<strong>stealth memory injection</strong>'),
+    'MemGhost publication should emphasize stealth memory injection.'
+);
+assert.ok(
+    memGhostHtml.includes('<strong>WhisperBench</strong>'),
+    'MemGhost publication should mention WhisperBench.'
+);
+assert.ok(
+    memGhostHtml.includes('<strong>MemGhost</strong>'),
+    'MemGhost publication should mention MemGhost.'
+);
+assert.ok(
+    memGhostNews.includes(
+        'is now online, studying <strong>stealth memory injection</strong> in persistent personal agents.'
+    ),
+    'MemGhost news item should announce the new arXiv paper.'
 );
 
 assert.ok(
@@ -175,10 +230,64 @@ assert.ok(
     'Transferable Direct Prompt Injection should mark Yechao Zhang as the corresponding author.'
 );
 
-assert.match(
-    html,
-    /<h3><a href="https:\/\/arxiv\.org\/abs\/2605\.12571" target="_blank">VideoSEAL<\/a><\/h3>/,
-    'The VideoSEAL project card should link to the arXiv abstract.'
+assert.ok(
+    !html.includes('<h2 class="section-title">Selected Research Projects</h2>'),
+    'Selected Research Projects section should not be shown.'
+);
+assert.ok(
+    !html.includes('id="projects"'),
+    'The page should not include a projects section anchor.'
+);
+assert.ok(
+    !html.includes('href="#projects"'),
+    'Top navigation should not link to a removed projects section.'
+);
+assert.ok(
+    !html.includes('<h2 class="section-title">Service & Honors</h2>'),
+    'Service & Honors section should not be shown.'
+);
+assert.ok(
+    !html.includes('id="service"'),
+    'The page should not include a service section anchor.'
+);
+assert.ok(
+    !html.includes('href="#service"'),
+    'Top navigation should not link to a removed service section.'
+);
+assert.ok(
+    !html.includes('Reviewer (2025)') &&
+        !html.includes('Reviewer (2024)') &&
+        !html.includes('Journal Reviewer') &&
+        !html.includes('Outstanding Doctoral Graduate') &&
+        !html.includes('China National Scholarship') &&
+        !html.includes('Merit PhD Student'),
+    'Academic service and honors content should be removed.'
+);
+
+const timelineItemCount = [...experienceHtml.matchAll(/<div class="timeline-item">/g)].length;
+assert.equal(timelineItemCount, 2, 'Experience should only list two timeline items.');
+assert.ok(
+    experienceHtml.includes('<div class="timeline-date">Sep 2024 - Dec 2024</div>') &&
+        experienceHtml.includes('<h3>Ant Group, Security Department</h3>') &&
+        experienceHtml.includes('<p class="role">Research Intern</p>'),
+    'Experience should list the Ant Group research internship.'
+);
+assert.ok(
+    experienceHtml.includes('<div class="timeline-date">Apr 2024 - Aug 2024</div>') &&
+        experienceHtml.includes('<h3>Tencent AI Lab</h3>') &&
+        experienceHtml.includes('<p class="role">Algorithm Intern</p>'),
+    'Experience should list the Tencent AI Lab algorithm internship.'
+);
+assert.ok(
+    !experienceHtml.includes('Huazhong University of Science and Technology') &&
+        !experienceHtml.includes('Ph.D. Student') &&
+        !experienceHtml.includes('GPA: 89.99/100'),
+    'Experience should not include the Ph.D. timeline item.'
+);
+assert.ok(
+    !experienceHtml.includes('Researched backdoor attacks and defenses') &&
+        !experienceHtml.includes('Built a knowledge-enhanced agent and researched RAG poisoning'),
+    'Experience internships should not include detailed work descriptions.'
 );
 
 assert.ok(

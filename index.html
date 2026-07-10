@@ -62,8 +62,6 @@
                     <li><a href="#news">News</a></li>
                     <li><a href="#publications">Publications</a></li>
                     <li><a href="#experience">Experience</a></li>
-                    <li><a href="#projects">Projects</a></li>
-                    <li><a href="#service">Service</a></li>
                 </ul>
             </nav>
 
@@ -111,6 +109,10 @@
                     <h2 class="section-title">News</h2>
                     <div class="news-list">
                         <div class="news-item">
+                            <span class="news-date">Jul 2026</span>
+                            <span class="news-content"><a href="https://arxiv.org/abs/2607.05189" target="_blank"><strong>MemGhost</strong></a> is now online, studying <strong>stealth memory injection</strong> in persistent personal agents.</span>
+                        </div>
+                        <div class="news-item">
                             <span class="news-date">May 2026</span>
                             <span class="news-content"><a href="https://arxiv.org/abs/2605.12571" target="_blank"><strong>VideoSEAL</strong></a> is now online and accepted to <strong>ICML 2026</strong>, studying evidence misalignment as a <strong>reward-hacking failure</strong> in agentic RL for long-video understanding.</span>
                         </div>
@@ -155,6 +157,21 @@
                     <h2 class="section-title">Selected Publications</h2>
                     <p class="section-note"><sup>&dagger;</sup> Corresponding author</p>
                     <div class="publication-list">
+                        <!-- MemGhost -->
+                        <div class="publication-item">
+                            <div class="pub-content">
+                                <h3 class="pub-title"><a href="https://arxiv.org/abs/2607.05189" target="_blank">When Claws Remember but Do Not Tell: Stealthy Memory Injection in Persistent Personal Agents</a></h3>
+                                <p class="pub-authors"><strong>Yechao Zhang</strong>, Shiqian Zhao, Jiawen Zhang, Jie Zhang, Gelei Deng, Xiaogeng Liu, Chaowei Xiao, Tianwei Zhang</p>
+                                <p class="pub-venue">arXiv 2026</p>
+                                <div class="pub-desc">
+                                    <p>This paper studies <strong>stealth memory injection</strong>, where a remote black-box adversary can use a single email payload to make persistent personal agents save poisoned memory while keeping the user-facing response quiet. It introduces <strong>WhisperBench</strong>, a 108-case full-cycle benchmark, and <strong>MemGhost</strong>, a one-shot payload generation framework for testing how poisoned memory later steers agent behavior.</p>
+                                </div>
+                                <div class="pub-links">
+                                    <a href="https://arxiv.org/pdf/2607.05189" target="_blank" class="btn-sm"><i class="far fa-file-pdf"></i> PDF</a>
+                                </div>
+                            </div>
+                        </div>
+
                         <!-- VideoSEAL -->
                         <div class="publication-item">
                             <div class="pub-content">
@@ -301,58 +318,15 @@
                 </div>
             </section>
 
-            <section id="projects" class="section bg-light">
-                <div class="container">
-                    <h2 class="section-title">Selected Research Projects</h2>
-                    <div class="project-grid">
-                        <div class="project-card">
-                            <span class="badge">arXiv 2026</span>
-                            <h3><a href="https://arxiv.org/abs/2603.23064" target="_blank">OpenClaw Heartbeat & Silent Memory Pollution</a></h3>
-                            <p>I studied how heartbeat-style background execution in persistent personal agents can
-                                silently carry untrusted content into the shared agent context. The work shows that
-                                background runs, memory provenance, and user visibility are core security boundaries for
-                                real-world personal agents.</p>
-                        </div>
-                        <div class="project-card">
-                            <span class="badge">ACM CCS 2026</span>
-                            <h3><a href="https://reasoningbomb.github.io/" target="_blank">ReasoningBomb</a></h3>
-                            <p>ReasoningBomb studies denial-of-service attacks against large reasoning models by
-                                inducing pathologically long reasoning. The project highlights a safety and availability
-                                risk for deployed reasoning-heavy agents: harmful behavior can appear as excessive
-                                computation rather than an obviously wrong answer.</p>
-                        </div>
-                        <div class="project-card">
-                            <span class="badge">ICML 2026</span>
-                            <h3><a href="https://arxiv.org/abs/2605.12571" target="_blank">VideoSEAL</a></h3>
-                            <p>VideoSEAL studies evidence misalignment in agentic long-video understanding, where a
-                                system may provide authoritative answers while relying on weak or mismatched evidence.
-                                The project improves reliability by decoupling answer authority from evidence handling
-                                in multimodal agentic decision making.</p>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
             <section id="experience" class="section">
                 <div class="container">
                     <h2 class="section-title">Experience</h2>
                     <div class="timeline">
                         <div class="timeline-item">
-                            <div class="timeline-date">2020 - 2025</div>
-                            <div class="timeline-content">
-                                <h3>Huazhong University of Science and Technology</h3>
-                                <p class="role">Ph.D. Student, School of Cyber Science and Engineering</p>
-                                <p class="location">Wuhan, China</p>
-                                <p class="gpa">GPA: 89.99/100</p>
-                            </div>
-                        </div>
-                        <div class="timeline-item">
                             <div class="timeline-date">Sep 2024 - Dec 2024</div>
                             <div class="timeline-content">
                                 <h3>Ant Group, Security Department</h3>
                                 <p class="role">Research Intern</p>
-                                <p>Researched backdoor attacks and defenses, including training clean models
-                                    against backdoored pre-trained encoders.</p>
                             </div>
                         </div>
                         <div class="timeline-item">
@@ -360,59 +334,7 @@
                             <div class="timeline-content">
                                 <h3>Tencent AI Lab</h3>
                                 <p class="role">Algorithm Intern</p>
-                                <p>Built a knowledge-enhanced agent and researched RAG poisoning.</p>
                             </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <!-- <section id="projects" class="section bg-light">
-                <div class="container">
-                    <h2 class="section-title">Research Vision</h2>
-                    <div class="philosophy-content">
-                        <p>My research has evolved from addressing foundational problems in well-established domains
-                            to <strong>aligning with cutting-edge industry developments and pursuing real-world
-                                impact</strong>.
-
-                            Currently, I am driven by two guiding principles:
-                        <ul>
-                            <li><strong>Securing real-world AI deployment</strong>: Uncovering and mitigating security
-                                vulnerabilities in enterprise AI products and applications that affect everyday users
-                                and developers. The focus is on real threats in production systems, not on those that
-                                exist only in papers.
-                            </li>
-                            <li><strong>Safeguarding frontier AI development</strong>: Understanding and addressing
-                                fundamental AI safety challenges that the leading industrial organizations prioritize.
-                                The focus is on overcoming foreseeable barriers to building safe and reliable AI
-                                systems.
-                            </li>
-                        </ul>
-
-
-                    </div>
-                </div>
-            </section> -->
-
-            <section id="service" class="section">
-                <div class="container">
-                    <h2 class="section-title">Service & Honors</h2>
-                    <div class="service-grid">
-                        <div class="service-column">
-                            <h3>Academic Service</h3>
-                            <ul class="styled-list">
-                                <li><strong>Reviewer (2025):</strong> NeurIPS, ICLR, CVPR, AAAI, ICML, ICCV, ACM MM</li>
-                                <li><strong>Reviewer (2024):</strong> NeurIPS, CVPR, ECCV, ICPR, ACM MM</li>
-                                <li><strong>Journal Reviewer:</strong> IEEE TDSC, IEEE TNNLS, IEEE TIFS</li>
-                            </ul>
-                        </div>
-                        <div class="service-column">
-                            <h3>Honors</h3>
-                            <ul class="styled-list">
-                                <li>Outstanding Doctoral Graduate, HUST (2025)</li>
-                                <li>China National Scholarship (2021)</li>
-                                <li>Merit PhD Student, HUST (2021)</li>
-                            </ul>
                         </div>
                     </div>
                 </div>
