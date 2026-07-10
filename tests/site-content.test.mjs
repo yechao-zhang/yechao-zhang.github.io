@@ -109,7 +109,7 @@ assert.ok(
 );
 assert.ok(
     memGhostNews.includes(
-        'is now online, studying <strong>stealth memory injection</strong> in persistent personal agents.'
+        'is now online, studying <strong>stealth memory injection</strong> in persistent personal agents (OpenClaw Hermes).'
     ),
     'MemGhost news item should announce the new arXiv paper.'
 );
