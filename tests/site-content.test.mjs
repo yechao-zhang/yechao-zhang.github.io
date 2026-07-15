@@ -6,7 +6,9 @@ import { fileURLToPath } from 'node:url';
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const rootDir = resolve(__dirname, '..');
 const indexPath = resolve(rootDir, 'index.html');
+const stylePath = resolve(rootDir, 'style.css');
 const html = readFileSync(indexPath, 'utf8');
+const css = readFileSync(stylePath, 'utf8');
 
 const videoSealTitle =
     'VideoSEAL: Mitigating Evidence Misalignment in Agentic Long Video Understanding by Decoupling Answer Authority';
@@ -80,6 +82,27 @@ assert.ok(
 assert.ok(
     !publicationsHtml.includes('<p class="pub-note">'),
     'Publication entries should not repeat the corresponding-author note.'
+);
+
+[
+    [/--sidebar-width:\s*280px;/, 'Sidebar should use a compact Xiaogeng-style width.'],
+    [/body\s*{[\s\S]*?font-size:\s*15px;/, 'Base text should be compact.'],
+    [/\.container\s*{[\s\S]*?max-width:\s*920px;/, 'Main content should use a narrower reading width.'],
+    [/\.profile-image-container\s*{[\s\S]*?width:\s*136px;[\s\S]*?height:\s*136px;/, 'Profile image should be smaller.'],
+    [/\.profile-link\s*{[\s\S]*?min-height:\s*30px;/, 'Sidebar profile links should be compact.'],
+    [/\.section\s*{[\s\S]*?padding:\s*38px 48px;[\s\S]*?scroll-margin-top:\s*58px;/, 'Sections should have tighter desktop padding and clear sticky-nav anchors.'],
+    [/\.section-title\s*{[\s\S]*?font-size:\s*1\.55rem;/, 'Section titles should be smaller.'],
+    [/\.news-item\s*{[\s\S]*?padding:\s*8px 0 10px;/, 'News rows should be list-like, not large cards.'],
+    [/\.publication-item\s*{[\s\S]*?padding:\s*16px 0;/, 'Publication entries should be compact rows.'],
+    [/\.btn-sm\s*{[\s\S]*?min-height:\s*28px;/, 'Publication buttons should be smaller.'],
+    [/@media \(max-width:\s*640px\)\s*{[\s\S]*?\.profile-image-container\s*{[\s\S]*?width:\s*118px;[\s\S]*?height:\s*118px;/, 'Mobile profile image should stay compact.'],
+    [/@media \(max-width:\s*640px\)\s*{[\s\S]*?\.profile-links\s*{[\s\S]*?grid-template-columns:\s*repeat\(2, minmax\(0, 1fr\)\);/, 'Mobile profile links should use two compact columns.'],
+].forEach(([pattern, message]) => {
+    assert.match(css, pattern, message);
+});
+assert.ok(
+    !css.includes('Playfair Display') && !html.includes('Playfair+Display'),
+    'Name and section headings should use the cleaner site font, not Playfair Display.'
 );
 
 [
