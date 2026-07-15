@@ -85,24 +85,21 @@ assert.ok(
 );
 
 [
-    [/--sidebar-width:\s*280px;/, 'Sidebar should use a compact Xiaogeng-style width.'],
-    [/body\s*{[\s\S]*?font-size:\s*15px;/, 'Base text should be compact.'],
-    [/\.container\s*{[\s\S]*?max-width:\s*920px;/, 'Main content should use a narrower reading width.'],
-    [/\.profile-image-container\s*{[\s\S]*?width:\s*136px;[\s\S]*?height:\s*136px;/, 'Profile image should be smaller.'],
-    [/\.profile-link\s*{[\s\S]*?min-height:\s*30px;/, 'Sidebar profile links should be compact.'],
-    [/\.section\s*{[\s\S]*?padding:\s*38px 48px;[\s\S]*?scroll-margin-top:\s*58px;/, 'Sections should have tighter desktop padding and clear sticky-nav anchors.'],
-    [/\.section-title\s*{[\s\S]*?font-size:\s*1\.55rem;/, 'Section titles should be smaller.'],
-    [/\.news-item\s*{[\s\S]*?padding:\s*8px 0 10px;/, 'News rows should be list-like, not large cards.'],
-    [/\.publication-item\s*{[\s\S]*?padding:\s*16px 0;/, 'Publication entries should be compact rows.'],
-    [/\.btn-sm\s*{[\s\S]*?min-height:\s*28px;/, 'Publication buttons should be smaller.'],
-    [/@media \(max-width:\s*640px\)\s*{[\s\S]*?\.profile-image-container\s*{[\s\S]*?width:\s*118px;[\s\S]*?height:\s*118px;/, 'Mobile profile image should stay compact.'],
-    [/@media \(max-width:\s*640px\)\s*{[\s\S]*?\.profile-links\s*{[\s\S]*?grid-template-columns:\s*repeat\(2, minmax\(0, 1fr\)\);/, 'Mobile profile links should use two compact columns.'],
+    [/--sidebar-width:\s*300px;/, 'Stylesheet should restore the pre-today sidebar width.'],
+    [/\.profile-image-container\s*{[\s\S]*?width:\s*180px;[\s\S]*?height:\s*180px;/, 'Stylesheet should restore the pre-today profile image size.'],
+    [/\.main-content\s*{[\s\S]*?padding:\s*40px 60px;/, 'Main content should use the pre-today page padding.'],
+    [/\.section\s*{[\s\S]*?margin-bottom:\s*60px;/, 'Sections should use the pre-today spacing model.'],
+    [/\.section-title\s*{[\s\S]*?font-family:\s*'Playfair Display', serif;[\s\S]*?font-size:\s*2rem;/, 'Section titles should use the pre-today heading style.'],
+    [/\.news-list\s*{[\s\S]*?border-left:\s*2px solid #eee;/, 'News should use the pre-today timeline styling.'],
+    [/\.publication-item\s*{[\s\S]*?border-bottom:\s*1px solid #eee;[\s\S]*?padding-bottom:\s*28px;/, 'Publications should use the pre-today separator styling.'],
+    [/\.btn-sm\s*{[\s\S]*?padding:\s*4px 12px;/, 'Publication buttons should use the pre-today size.'],
+    [/\.profile-links\s*{[\s\S]*?margin-bottom:\s*30px;/, 'Current profile-link markup should remain styled under the restored CSS.'],
 ].forEach(([pattern, message]) => {
     assert.match(css, pattern, message);
 });
 assert.ok(
-    !css.includes('Playfair Display') && !html.includes('Playfair+Display'),
-    'Name and section headings should use the cleaner site font, not Playfair Display.'
+    html.includes('Playfair+Display'),
+    'The page should load the pre-today heading font used by the restored CSS.'
 );
 
 [
