@@ -21,6 +21,9 @@ const memGhostPublication = publicationItems.find((item) =>
 const memGhostNews = html.match(
     /<div class="news-item">[\s\S]*?2607\.05189[\s\S]*?<\/div>/
 )?.[0];
+const memGhostPressNews = html.match(
+    /<div class="news-item">[\s\S]*?thehackernews\.com\/2026\/07\/new-memghost-attack-plants-persistent\.html[\s\S]*?<\/div>/
+)?.[0];
 const videoSealPublication = publicationItems.find((item) => item.includes('VideoSEAL:'));
 const videoSealNews = html.match(
     /<div class="news-item">[\s\S]*?<strong>VideoSEAL<\/strong>[\s\S]*?<\/div>/
@@ -40,12 +43,15 @@ const publicationsSection = html.match(
 const experienceSection = html.match(
     /<section id="experience"[\s\S]*?<\/section>/
 );
+const sidebarSection = html.match(/<aside class="sidebar">[\s\S]*?<\/aside>/);
 
 assert.ok(publicationsSection, 'Selected Publications section should exist.');
 assert.ok(experienceSection, 'Experience section should exist.');
+assert.ok(sidebarSection, 'Sidebar profile section should exist.');
 
 assert.ok(memGhostPublication, 'MemGhost paper should be listed as a selected publication.');
 assert.ok(memGhostNews, 'MemGhost paper should be listed in News.');
+assert.ok(memGhostPressNews, 'MemGhost Hacker News coverage should be listed in News.');
 assert.ok(videoSealPublication, 'VideoSEAL should be listed as a selected publication.');
 assert.ok(videoSealNews, 'VideoSEAL should be listed in News.');
 assert.ok(openClawPublication, 'OpenClaw heartbeat paper should be listed as a selected publication.');
@@ -65,6 +71,7 @@ const dynamicMaximinHtml = dynamicMaximinPublication;
 const promptInjectionHtml = promptInjectionPublication;
 const publicationsHtml = publicationsSection[0];
 const experienceHtml = experienceSection[0];
+const sidebarHtml = sidebarSection[0];
 
 assert.ok(
     publicationsHtml.includes('<p class="section-note"><sup>&dagger;</sup> Corresponding author</p>'),
@@ -74,6 +81,34 @@ assert.ok(
     !publicationsHtml.includes('<p class="pub-note">'),
     'Publication entries should not repeat the corresponding-author note.'
 );
+
+[
+    ['Singapore', 'fas fa-map-marker-alt'],
+    ['Website', 'fas fa-globe'],
+    ['Email', 'fas fa-envelope'],
+    ['Twitter', 'fab fa-twitter'],
+    ['LinkedIn', 'fab fa-linkedin'],
+    ['DBLP', 'fas fa-database'],
+    ['Github', 'fab fa-github'],
+    ['Google Scholar', 'fas fa-graduation-cap'],
+    ['ORCID', 'fab fa-orcid'],
+].forEach(([label, icon]) => {
+    assert.ok(sidebarHtml.includes(label), `Sidebar should include ${label}.`);
+    assert.ok(sidebarHtml.includes(icon), `Sidebar should show the ${label} icon.`);
+});
+
+[
+    'https://yechao-zhang.github.io/',
+    'mailto:yech.zhang@gmail.com',
+    'https://x.com/yechao_zh',
+    'https://www.linkedin.com/in/yechao-zhang-1a7928365/',
+    'https://dblp.org/pid/304/1238.html',
+    'https://github.com/yechao-zhang',
+    'https://scholar.google.com/citations?user=tk9ob5EAAAAJ',
+    'https://orcid.org/0000-0002-0551-1200',
+].forEach((href) => {
+    assert.ok(sidebarHtml.includes(href), `Sidebar should link to ${href}.`);
+});
 
 assert.ok(
     memGhostHtml.includes(memGhostTitle),
@@ -86,6 +121,16 @@ assert.ok(
 assert.ok(
     memGhostHtml.includes('https://arxiv.org/pdf/2607.05189'),
     'MemGhost publication should link to the PDF.'
+);
+assert.ok(
+    memGhostHtml.includes(
+        'https://thehackernews.com/2026/07/new-memghost-attack-plants-persistent.html'
+    ),
+    'MemGhost publication should link to The Hacker News press coverage.'
+);
+assert.ok(
+    memGhostHtml.includes('Press (The Hacker News)'),
+    'MemGhost publication should label the coverage as press.'
 );
 assert.ok(
     memGhostHtml.includes('<strong>Yechao Zhang</strong>'),
@@ -112,6 +157,12 @@ assert.ok(
         'is now online, studying <strong>stealth memory injection</strong> in persistent personal agents (OpenClaw Hermes).'
     ),
     'MemGhost news item should announce the new arXiv paper.'
+);
+assert.ok(
+    memGhostPressNews.includes(
+        'was covered by <strong>The Hacker News</strong>: New MemGhost Attack Plants Persistent False Memories in AI Agents Through One Email.'
+    ),
+    'MemGhost press news item should summarize The Hacker News coverage.'
 );
 
 assert.ok(

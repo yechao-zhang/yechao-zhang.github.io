@@ -3,10 +3,19 @@ document.addEventListener('DOMContentLoaded', () => {
     const mobileMenu = document.getElementById('mobile-menu');
     const navMenu = document.querySelector('.nav-menu');
 
-    if (mobileMenu) {
-        mobileMenu.addEventListener('click', () => {
-            navMenu.classList.toggle('active');
+    if (mobileMenu && navMenu) {
+        const toggleMenu = () => {
+            const isOpen = navMenu.classList.toggle('active');
             mobileMenu.classList.toggle('active');
+            mobileMenu.setAttribute('aria-expanded', String(isOpen));
+        };
+
+        mobileMenu.addEventListener('click', toggleMenu);
+        mobileMenu.addEventListener('keydown', (event) => {
+            if (event.key === 'Enter' || event.key === ' ') {
+                event.preventDefault();
+                toggleMenu();
+            }
         });
     }
 
@@ -15,7 +24,11 @@ document.addEventListener('DOMContentLoaded', () => {
         anchor.addEventListener('click', function (e) {
             e.preventDefault();
 
-            navMenu.classList.remove('active'); // Close mobile menu on click
+            if (navMenu && mobileMenu) {
+                navMenu.classList.remove('active');
+                mobileMenu.classList.remove('active');
+                mobileMenu.setAttribute('aria-expanded', 'false');
+            }
 
             const targetId = this.getAttribute('href');
             if (targetId === '#') return;
@@ -35,12 +48,10 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // Navbar Scroll Effect
-    const navbar = document.querySelector('.navbar');
+    const navbar = document.querySelector('.top-nav');
     window.addEventListener('scroll', () => {
-        if (window.scrollY > 50) {
-            navbar.style.boxShadow = '0 2px 10px rgba(0, 0, 0, 0.1)';
-        } else {
-            navbar.style.boxShadow = '0 2px 10px rgba(0, 0, 0, 0.05)';
+        if (navbar) {
+            navbar.classList.toggle('is-scrolled', window.scrollY > 24);
         }
     });
 });
