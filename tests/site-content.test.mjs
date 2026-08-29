@@ -45,11 +45,43 @@ const publicationsSection = html.match(
 const experienceSection = html.match(
     /<section id="experience"[\s\S]*?<\/section>/
 );
+const aboutSection = html.match(/<section id="about"[\s\S]*?<\/section>/);
 const sidebarSection = html.match(/<aside class="sidebar">[\s\S]*?<\/aside>/);
 
 assert.ok(publicationsSection, 'Selected Publications section should exist.');
 assert.ok(experienceSection, 'Experience section should exist.');
+assert.ok(aboutSection, 'About section should exist.');
 assert.ok(sidebarSection, 'Sidebar profile section should exist.');
+[
+    ['news', 'News'],
+    ['publications', 'Selected Publications'],
+    ['experience', 'Experience'],
+].forEach(([id, heading]) => {
+    assert.ok(
+        html.includes(`<section id="${id}"`) &&
+            html.includes(`<h2 class="section-title">${heading}</h2>`),
+        `${heading} should preserve its original accessible heading text.`
+    );
+});
+
+assert.ok(
+    aboutSection[0].includes(
+        'received my Ph.D. from Huazhong University of Science and Technology (HUST) under the supervision of'
+    ),
+    'About should state that the HUST Ph.D. was completed under supervision.'
+);
+assert.ok(
+    aboutSection[0].includes(
+        'href="http://faculty.hust.edu.cn/HUSHENGSHAN/zh_CN/index.htm" target="_blank">Shengshan Hu</a>'
+    ),
+    'About should link Shengshan Hu to his HUST faculty profile.'
+);
+assert.ok(
+    aboutSection[0].includes(
+        'href="https://leozhangcs.github.io/" target="_blank">Leo Yu Zhang</a>'
+    ),
+    'About should link Leo Yu Zhang to his official homepage.'
+);
 
 assert.ok(memGhostPublication, 'MemGhost paper should be listed as a selected publication.');
 assert.ok(memGhostNews, 'MemGhost paper should be listed in News.');
@@ -85,21 +117,65 @@ assert.ok(
 );
 
 [
-    [/--sidebar-width:\s*300px;/, 'Stylesheet should restore the pre-today sidebar width.'],
-    [/\.profile-image-container\s*{[\s\S]*?width:\s*180px;[\s\S]*?height:\s*180px;/, 'Stylesheet should restore the pre-today profile image size.'],
-    [/\.main-content\s*{[\s\S]*?padding:\s*40px 60px;/, 'Main content should use the pre-today page padding.'],
-    [/\.section\s*{[\s\S]*?margin-bottom:\s*60px;/, 'Sections should use the pre-today spacing model.'],
-    [/\.section-title\s*{[\s\S]*?font-family:\s*'Playfair Display', serif;[\s\S]*?font-size:\s*2rem;/, 'Section titles should use the pre-today heading style.'],
-    [/\.news-list\s*{[\s\S]*?border-left:\s*2px solid #eee;/, 'News should use the pre-today timeline styling.'],
-    [/\.publication-item\s*{[\s\S]*?border-bottom:\s*1px solid #eee;[\s\S]*?padding-bottom:\s*28px;/, 'Publications should use the pre-today separator styling.'],
-    [/\.btn-sm\s*{[\s\S]*?padding:\s*4px 12px;/, 'Publication buttons should use the pre-today size.'],
-    [/\.profile-links\s*{[\s\S]*?margin-bottom:\s*30px;/, 'Current profile-link markup should remain styled under the restored CSS.'],
+    [
+        /body\s*{[\s\S]*?font-family:\s*'Trebuchet MS', Helvetica, sans-serif;[\s\S]*?font-size:\s*15px;[\s\S]*?line-height:\s*1\.5;/,
+        'Body typography should match the compact Trebuchet reference style.',
+    ],
+    [
+        /\.page-container\s*{[\s\S]*?display:\s*grid;[\s\S]*?grid-template-columns:\s*240px minmax\(0, 1fr\);[\s\S]*?max-width:\s*1280px;[\s\S]*?margin:\s*0 auto;/,
+        'Desktop layout should use a centered 240px profile rail and flexible article column.',
+    ],
+    [
+        /\.sidebar\s*{[\s\S]*?position:\s*sticky;[\s\S]*?max-height:\s*100vh;[\s\S]*?overflow-y:\s*auto;[\s\S]*?border-right:\s*none;/,
+        'Sidebar should be a flat sticky profile rail that remains scrollable on short screens.',
+    ],
+    [
+        /\.profile-image-container\s*{[\s\S]*?width:\s*180px;[\s\S]*?height:\s*180px;[\s\S]*?box-shadow:\s*none;/,
+        'Profile image should retain its size while using the flatter reference treatment.',
+    ],
+    [
+        /\.top-nav\s*{[\s\S]*?min-height:\s*48px;[\s\S]*?border-bottom:\s*1px solid #f2f3f3;/,
+        'Top navigation should use the slim AcademicPages-style rule and height.',
+    ],
+    [
+        /\.section\s*{[\s\S]*?margin-bottom:\s*42px;/,
+        'Sections should use compact vertical spacing.',
+    ],
+    [
+        /\.section-title\s*{[\s\S]*?font-size:\s*1\.4rem;[\s\S]*?display:\s*block;/,
+        'Section headings should use compact sans-serif typography and full-width rules.',
+    ],
+    [
+        /\.news-list\s*{[\s\S]*?border-left:\s*none;/,
+        'News should use a flat list rather than timeline chrome.',
+    ],
+    [
+        /\.publication-list\s*{[\s\S]*?gap:\s*24px;/,
+        'Publication entries should use the denser reference spacing.',
+    ],
+    [
+        /\.publication-list\s*>\s*\.publication-item:has\(\+\s*\.show-more-container\)\s*{[\s\S]*?border-bottom:\s*0;/,
+        'The final publication before the show-more link should not retain a separator.',
+    ],
+    [
+        /\.btn-sm\s*{[\s\S]*?padding:\s*0;[\s\S]*?border:\s*0;/,
+        'Publication actions should render as plain academic links rather than buttons.',
+    ],
+    [
+        /@media\s*\(max-width:\s*900px\)/,
+        'The two-column layout should collapse at the planned mobile breakpoint.',
+    ],
 ].forEach(([pattern, message]) => {
     assert.match(css, pattern, message);
 });
 assert.ok(
-    html.includes('Playfair+Display'),
-    'The page should load the pre-today heading font used by the restored CSS.'
+    !html.includes('fonts.googleapis.com') && !html.includes('Playfair+Display'),
+    'The page should use the local font stack without loading Google Fonts.'
+);
+assert.ok(
+    html.includes('<ul class="research-directions">') &&
+        !html.includes('class="interest-card"'),
+    'Research directions should use a compact semantic list rather than cards.'
 );
 
 [
