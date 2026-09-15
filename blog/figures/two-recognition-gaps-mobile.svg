@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="560" height="780" viewBox="0 0 560 780" role="img" aria-labelledby="title desc">
+<title id="title">Two gaps between recognition and safety</title>
+<desc id="desc">Two conceptual parallels: recognizing evidence when asked separately but misinterpreting it during the task; acknowledging possible harm but continuing harmful actions. This is not a measured sequence of internal stages or a diagnosis of a particular prompt-injection failure.</desc>
+<defs><marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 10 5 0 10" fill="none" stroke="#8a979e" stroke-width="1.5"/></marker></defs>
+<rect width="560" height="780" rx="14" fill="#f5f7f8"/>
+<g font-family="Arial, Helvetica, sans-serif">
+<text x="26" y="44" font-size="26" fill="#2e3d47" font-weight="700">Two gaps between</text><text x="26" y="78" font-size="26" fill="#2e3d47" font-weight="700">recognition and safety</text>
+<rect x="18" y="108" width="524" height="276" rx="12" fill="#fff" stroke="#dce3e7"/>
+<text x="36" y="145" font-size="20" fill="#2f5d7c" font-weight="700">01 / RECOGNITION IN CONTEXT</text>
+<text x="36" y="161" font-size="14" fill="#536773">Related concern: biased reasoning</text>
+<rect x="36" y="166" width="488" height="76" rx="7" fill="#edf3f7"/>
+<text x="55" y="197" font-size="23" fill="#2e3d47" font-weight="700">Recognizes the evidence</text><text x="55" y="226" font-size="22" fill="#536773">when asked separately</text>
+<path d="M280 250 V279" stroke="#8a979e" stroke-width="2.5" stroke-dasharray="5 5" marker-end="url(#a)"/>
+<rect x="36" y="292" width="488" height="69" rx="7" fill="#fcf1eb"/>
+<text x="55" y="321" font-size="23" fill="#793f29" font-weight="700">Misinterprets the evidence</text><text x="55" y="349" font-size="23" fill="#793f29" font-weight="700">during the task</text>
+<rect x="18" y="403" width="524" height="276" rx="12" fill="#fff" stroke="#dce3e7"/>
+<text x="36" y="440" font-size="20" fill="#a95132" font-weight="700">02 / ACKNOWLEDGMENT &amp; ACTION</text>
+<text x="36" y="456" font-size="14" fill="#536773">Related concern: recklessness</text>
+<rect x="36" y="461" width="488" height="76" rx="7" fill="#edf3f7"/>
+<text x="55" y="492" font-size="23" fill="#2e3d47" font-weight="700">Acknowledges possible harm</text><text x="55" y="521" font-size="22" fill="#536773">during the actual task</text>
+<path d="M280 545 V574" stroke="#8a979e" stroke-width="2.5" stroke-dasharray="5 5" marker-end="url(#a)"/>
+<rect x="36" y="587" width="488" height="69" rx="7" fill="#fcf1eb"/>
+<text x="55" y="616" font-size="23" fill="#793f29" font-weight="700">Continues with</text><text x="55" y="644" font-size="23" fill="#793f29" font-weight="700">harmful actions</text>
+<text x="26" y="719" font-size="20" fill="#536773">A separate check does not establish</text><text x="26" y="747" font-size="20" fill="#536773">recognition during the task.</text>
+</g></svg>

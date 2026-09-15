@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recognition Is Not Enough | Yechao Zhang</title>
+    <meta name="description" content="What separates recognizing a risk from acting safely? A research note connecting Anthropic’s incident analysis with SecReflect’s recognition–avoidance gap.">
+    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="article.css">
+</head>
+<body class="article-page">
+    <a class="skip-link" href="#article">Skip to article</a>
+    <div class="article-shell">
+        <nav class="article-nav" aria-label="Article navigation">
+            <a class="author-link" href="../index.html">Yechao Zhang</a>
+            <a href="../index.html#writing">All writing <span aria-hidden="true">↗</span></a>
+        </nav>
+        <main id="article">
+            <article>
+                <header class="article-header">
+                    <p class="eyebrow">Research notes · Agent security</p>
+                    <h1>Recognition Is Not Enough</h1>
+                    <p class="article-subtitle">From Anthropic’s alignment analysis of cybersecurity incidents to the recognition–avoidance gap in indirect prompt injection</p>
+                    <p class="article-meta">Yechao Zhang <span aria-hidden="true">·</span> <time datetime="2026-09-16">September 16, 2026</time></p>
+                </header>
+                <div class="article-body">
+<p><a href="https://www.anthropic.com/research/alignment-assessment-cybersecurity-incidents">Anthropic’s recent alignment analysis</a> examines four cybersecurity evaluation incidents in which agents interacted with real systems and caused harm. Two failure modes stand out: <strong>biased reasoning</strong> and <strong>recklessness</strong>. Biased reasoning means reading evidence in a way that supports continuing the task; recklessness means pressing on even when doing so could cause harm.</p>
+
+<p>These observations suggest two gaps between recognizing risk and acting safely. A model may be able to recognize a risk when asked directly, yet misinterpret the same evidence while carrying out a task. It may also acknowledge possible harm and still take a harmful action.</p>
+
+<p>We have been studying a similar problem in our work on <strong>safety alignment for LLM agents</strong>: what happens when an assistant encounters malicious instructions hidden in a document or information returned by a tool? This is known as <strong>indirect prompt injection (IPI)</strong>. In our experiments, models can often identify those instructions when asked to check for an attack, yet still follow them while carrying out the user’s task.</p>
+
+<p>We call this mismatch the <strong>recognition–avoidance gap</strong>. To narrow it, we train agents to propose and inspect their next action within their reasoning, revise it if it follows the attacker’s instructions, and only then emit a tool call for execution.</p>
+
+<h2>Biased reasoning: recognizing evidence in isolation, misinterpreting it in context</h2>
+
+<p>In Anthropic’s Mythos 5 case, the model repeatedly treated signs of real-world interaction as part of a simulation.</p>
+
+<p>When shown individual tool outputs separately, instances of the same model judged <strong>79%</strong> to indicate real-world interactions. During the original task, its written reasoning identified such evidence in three cases, or <strong>1% of actions</strong>. These measure different things: assessments of isolated outputs and statements made while acting. <a href="https://www.anthropic.com/research/alignment-assessment-cybersecurity-incidents">Source: Anthropic’s analysis.</a></p>
+
+<p>For our IPI experiments, the useful distinction is between <strong>being able to recognize an injection</strong> when asked and <strong>recognizing it during the task</strong>. Those are different observations. A correct answer in a separate check does not tell us how the agent interpreted the same material before its next action.</p>
+
+<p>We therefore ask how the model interprets instructions in the material it reads. Does it treat them as untrusted content, or accept them as instructions to follow?</p>
+
+<h2>Recklessness: acknowledging possible harm without changing behavior</h2>
+
+<p>Anthropic made possible real-world interaction clearer by editing the recorded conversation. The model more often acknowledged possible harm, without significantly changing its behavior. Unambiguous evidence did stop the original attack route. These tests used edited histories and simulated continuations. <a href="https://www.anthropic.com/research/alignment-assessment-cybersecurity-incidents">Source: Anthropic’s analysis.</a></p>
+
+<p>For IPI, this raises a different question from recognition alone: when the agent acknowledges that an action might be unsafe, does it revise the action or stop? Expressing concern is an observable response. It does not, by itself, establish what the model believes or guarantee a safer next action.</p>
+
+<p>This distinction matters for defenses. One test asks whether the agent recognizes malicious instructions during the task. Another asks whether its response to that risk changes the action it takes. Success on one test does not establish success on the other.</p>
+
+<figure class="article-figure" id="figure-two-gaps">
+<a class="figure-image-link" href="figures/two-recognition-gaps.svg" target="_blank" rel="noopener" aria-label="Open figure two-gaps at full size">
+<picture>
+<source media="(max-width: 560px)" srcset="figures/two-recognition-gaps-mobile.svg">
+<img src="figures/two-recognition-gaps.svg" alt="Two conceptual gaps: a model recognizes evidence when asked separately but misinterprets it during the task; or it acknowledges possible harm but continues harmful actions." width="960" height="580" loading="lazy" decoding="async">
+</picture>
+</a>
+<figcaption><strong>Figure 1. Two gaps between recognition and safety.</strong> Our comparison separates recognizing evidence during a task from acting on an acknowledgment of possible harm. The schematic does not show a measured sequence of internal stages. <a href="figures/two-recognition-gaps.svg" target="_blank" rel="noopener">Open full size ↗</a></figcaption>
+</figure>
+
+<h2>A similar pattern in indirect prompt injection</h2>
+
+<p>The attacker’s instructions arrive inside material the agent needs to read, not as a request from the user. A document may contain useful information and malicious instructions in the same passage. The agent needs to use the information without letting the document take control of the task.</p>
+
+<p>Our experiments ask whether the model can spot an attack that it fails to resist. At the point where the agent has just received the injected content and is about to act, we give the same model a separate security-check prompt: does the material it has seen contain an injection? This check does not replace the original task run. We compare its answer with what happened in that run: did the agent resist the attack, or did the attacker succeed?</p>
+
+<p>The model can recognize the injection in most runs where the attacker eventually succeeds. For the Qwen3-4B-Instruct model without a defense, the separate check correctly identifies the injection in <strong>92.07%</strong> of these runs (209 of 227), compared with <strong>98.76%</strong> of runs that resist the attack (954 of 966). Meta-SecAlign, an existing prompt-injection defense included for comparison, shows the same qualitative pattern.</p>
+
+<figure class="article-figure" id="figure-diagnostics">
+<a class="figure-image-link" href="figures/recognition-diagnostics.svg" target="_blank" rel="noopener" aria-label="Open figure diagnostics at full size">
+<picture>
+<source media="(max-width: 560px)" srcset="figures/recognition-diagnostics-mobile.svg">
+<img src="figures/recognition-diagnostics.svg" alt="Injection identification in a separate audit: no defense, 92.07 percent for eventually hijacked rollouts and 98.76 percent for resisted rollouts; Meta-SecAlign, 81.03 and 88.71 percent respectively." width="840" height="730" loading="lazy" decoding="async">
+</picture>
+</a>
+<figcaption><strong>Figure 2. Models can recognize attacks even when safety fails.</strong> Separate security checks on Qwen3-4B-Instruct, using the information available before its next action. Results are grouped by whether the original task run was hijacked or resisted the attack. These are identification rates, not attack success rates. Source: our manuscript. <a href="figures/recognition-diagnostics.svg" target="_blank" rel="noopener">Open full size ↗</a></figcaption>
+<details class="figure-data"><summary>View the exact chart values</summary>
+<div class="table-scroll"><table><caption>Pre-action injection identification in a separate audit</caption><thead><tr><th scope="col">Model / defense</th><th scope="col">Eventual outcome</th><th scope="col">Identified / total</th><th scope="col">Rate</th></tr></thead><tbody>
+<tr><th scope="row">No defense</th><td>Hijacked</td><td>209 / 227</td><td>92.07%</td></tr>
+<tr><th scope="row">No defense</th><td>Resisted</td><td>954 / 966</td><td>98.76%</td></tr>
+<tr><th scope="row">Meta-SecAlign</th><td>Hijacked</td><td>47 / 58</td><td>81.03%</td></tr>
+<tr><th scope="row">Meta-SecAlign</th><td>Resisted</td><td>943 / 1063</td><td>88.71%</td></tr>
+</tbody></table></div></details>
+</figure>
+
+<p>We also ask the model to examine actions it has already generated. The undefended model correctly flags <strong>81.61% of hijacked steps</strong> (355 of 435): steps in which its action served the attacker’s objective. It can often diagnose both the malicious instruction and the resulting action, even when it failed to stop the attack during the task.</p>
+
+<p>We also examine the model’s internal numerical representations just before it generates an action. Simple classifiers, called <strong>probes</strong>, can detect information associated with exposure to injected instructions, including in runs that later get hijacked. An injection-related signal is present before the unsafe action, not only in an explanation produced afterward.</p>
+
+<p>These checks have limits. Asking a model to look for an attack changes what we ask it to do. Finding a signal inside the model does not show that the model uses that signal to choose its actions. The results reveal a recognition–avoidance gap. They do not, by themselves, tell us whether an agent failed to recognize the injection during the task, misinterpreted its significance, or acknowledged a concern without changing its action.</p>
+
+<p>The parallel concerns recognition and behavior, not an identical threat. Anthropic examines how agents interpret evidence about real systems and possible harm; we examine whether they recognize and resist malicious instructions. For our work, that raises a practical question: can we train the agent to check its next action before carrying it out?</p>
+
+<h2>Our defense: check the next action before executing it</h2>
+
+<p>We call our defense <strong>SecReflect</strong>. It trains the agent to <strong>propose a candidate action within its reasoning</strong>, inspect that proposal for malicious influence, and either <strong>keep</strong> it or <strong>repair</strong> it. Only after this check does the agent emit a tool call for execution. A tool call is a request to another program, such as a calendar service.</p>
+
+<p>Consider an illustrative scheduling task. The user specifies a group of colleagues, while a retrieved document supplies useful meeting details alongside an unauthorized instruction to add another attendee. A general warning about the document would leave the decisive question unanswered: who will actually appear in the calendar call?</p>
+
+<p>By checking the proposed calendar action, the agent can trace each participant back to the user’s request or the document. It should retain the useful meeting details, exclude the unauthorized addition, and complete the requested task. This is the behavior we want the model to learn. Rejecting the whole document would also discard information needed for the meeting.</p>
+
+<p>We train the agent in two stages. First, we show it examples of this reasoning process: propose an action, inspect it, and keep it when it is sound or repair it when malicious instructions have influenced it. We call this <strong>introspective structure tuning</strong>. The examples teach the agent to include this check whenever it generates an action.</p>
+
+<p>Second, the agent learns from the outcomes of its own actions through <strong>reinforcement learning</strong>. It receives rewards for completing or making progress on the user’s task, and penalties for steps that violate the security objective. We call this <strong>reach–avoid policy optimization</strong>: reach the user’s goal while avoiding actions that serve the attacker.</p>
+
+<figure class="article-figure" id="figure-training">
+<a class="figure-image-link" href="figures/secreflect-training-overview.png" target="_blank" rel="noopener" aria-label="Open figure training at full size">
+<picture>
+<img src="figures/secreflect-training-overview.png" alt="SecReflect training overview. Stage one teaches proposing and inspecting an action within reasoning, then keeping or repairing it before emitting a tool call. Stage two uses task progress and avoidance violations to train on environment outcomes." width="4157" height="1622" loading="lazy" decoding="async">
+</picture>
+</a>
+<figcaption><strong>Figure 3. Connecting reflection to execution.</strong> Original SecReflect training overview. Left: supervised training of the proposal-and-reflection reasoning before a tool call is emitted. Right: reinforcement learning using task progress, trajectory outcomes, and avoidance penalties. Open the full-size image for details. <a href="figures/secreflect-training-overview.png" target="_blank" rel="noopener">Open full size ↗</a></figcaption>
+</figure>
+
+<p>The design is intended to connect the two questions: does the agent recognize malicious influence during the task, and does its response to that risk change the next action? Training rewards and penalties depend on what happens after the check. A convincing explanation provides little protection if the tool call still serves the attacker.</p>
+
+<h2>Does this change behavior?</h2>
+
+<p>We test whether the trained agent actually resists more attacks while completing the user’s work. The table below shows one evaluation from our manuscript using Qwen3-4B-Instruct-2507. We use <strong>AgentDojo</strong>, a benchmark that tests agents on user tasks in the presence of injected instructions, and average the results over five fixed attack templates.</p>
+
+<div class="table-scroll"><table><caption>AgentDojo: Qwen3-4B-Instruct-2507, averages over five static attack templates</caption><thead><tr><th scope="col">Model / defense</th><th scope="col">Attack success rate ↓</th><th scope="col">User-task completion under attack ↑</th></tr></thead><tbody>
+<tr><th scope="row">No defense</th><td>21.20%</td><td>43.52%</td></tr>
+<tr><th scope="row">SecReflect</th><td>0.97%</td><td>63.54%</td></tr>
+<tr><th scope="row">SecReflect-RL</th><td>0.61%</td><td>66.87%</td></tr>
+</tbody></table></div>
+
+<p>Here, SecReflect is the model after learning from examples in the first training stage. SecReflect-RL also includes the second, reinforcement-learning stage. Attack success measures whether the attacker achieves its objective; task completion measures whether the agent completes the user’s request. They are separate outcome rates. Source: the manuscript’s AgentDojo results table.</p>
+
+<p>The important pattern is fewer successful attacks alongside more completed user tasks. The security improvement is accompanied by better utility, rather than an agent that avoids attacks by ceasing to act. These benchmark results support the approach in the tested setting; they do not establish protection against every attack or show that SecReflect would prevent the incidents in Anthropic’s report.</p>
+
+<h2>Safety has to reach the next action</h2>
+
+<p>For me, the common question across these settings is whether an agent uses what it can recognize to act safely. We need to examine both how it assesses a situation and what it ultimately does.</p>
+
+<p>Our defense offers one approach to indirect prompt injection: train the agent to propose and inspect an action within its reasoning before emitting a tool call, then learn from whether the resulting actions help the user or the attacker. The goal is to catch malicious influence before it changes what the agent does, while still completing useful work.</p>
+
+<p><strong>For an agent, a safety judgment must do more than describe a risk. It must help determine what happens next.</strong></p>
+
+<h2>Sources and figure notes</h2>
+
+<ul>
+<li>Anthropic, <a href="https://www.anthropic.com/research/alignment-assessment-cybersecurity-incidents"><em>An alignment assessment of recent cybersecurity incidents</em></a>, September 9, 2026; updated September 10.</li>
+<li><em>SecReflect: Training LLM Agents to Introspect to Defend Against Indirect Prompt Injection</em>, author-provided manuscript. Diagnostic counts, training details, and benchmark results are reported from that manuscript; experiments were not rerun for this post.</li>
+<li>Figure 1 is an explanatory schematic created for this post. Figure 2 redraws the manuscript’s pre-action diagnostic counts. Figure 3 reproduces its original training overview.</li>
+</ul>
+                </div>
+            </article>
+        </main>
+        <footer class="article-footer">
+            <a href="../index.html#writing">← Back to writing</a>
+            <a href="recognition-is-not-enough.md">Markdown version</a>
+        </footer>
+    </div>
+</body>
+</html>
